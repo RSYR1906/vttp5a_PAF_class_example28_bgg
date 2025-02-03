@@ -19,7 +19,8 @@ public class BGGController {
     private BGGService bggService;
 
     @GetMapping("/api/comments/{username}")
-    public ResponseEntity<?> getReviewsByUser(@PathVariable String username, @RequestParam Integer limit) {
+    public ResponseEntity<?> getReviewsByUser(@PathVariable String username,
+            @RequestParam(required = false, defaultValue = "3") Integer limit) {
         List<Document> userReviews = bggService.getUserReviews(limit, username);
 
         if (userReviews.size() <= 0) {
